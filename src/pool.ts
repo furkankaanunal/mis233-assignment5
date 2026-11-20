@@ -5,7 +5,9 @@ export class Pool<T> {
   #waiting: ((item: T) => void)[] = [];
   #borrowed = new Set<T>();
   constructor(items: T[]) {
-    if (!items.length || new Set(items).size !== items.length) throw new Error("pool needs distinct items");
+    if (!items.length || new Set(items).size !== items.length) {
+      throw new Error("pool needs distinct items");
+    }
     this.#idle = [...items];
   }
   acquire(): Promise<T> {
@@ -20,10 +22,17 @@ export class Pool<T> {
     if (!this.#borrowed.has(item)) throw new Error("connection was not borrowed");
     const next = this.#waiting.shift();
     if (next) next(item);
-    else { this.#borrowed.delete(item); this.#idle.push(item); }
+    else {
+      this.#borrowed.delete(item);
+      this.#idle.push(item);
+    }
   }
   async use<R>(fn: (item: T) => Promise<R>): Promise<R> {
     const item = await this.acquire();
-    try { return await fn(item); } finally { this.release(item); }
+    try {
+      return await fn(item);
+    } finally {
+      this.release(item);
+    }
   }
 }

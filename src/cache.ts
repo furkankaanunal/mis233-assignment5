@@ -11,7 +11,9 @@ export class TaskCache {
     const current = new Promise<void>((resolve) => unlock = resolve);
     this.#queues.set(key, current);
     await previous;
-    try { return await fn(); } finally {
+    try {
+      return await fn();
+    } finally {
       unlock();
       if (this.#queues.get(key) === current) this.#queues.delete(key);
     }
@@ -24,5 +26,7 @@ export class TaskCache {
     if (row) await this.kv.set(key, row, { expireIn: 60_000 });
     return row;
   }
-  async invalidate(userId: number, id: number) { await this.kv.delete(["task", userId, id]); }
+  async invalidate(userId: number, id: number) {
+    await this.kv.delete(["task", userId, id]);
+  }
 }

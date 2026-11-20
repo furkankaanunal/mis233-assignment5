@@ -4,15 +4,28 @@ import { createDb, migrate } from "./db.ts";
 import { loadConfig } from "./config.ts";
 import { purgeOldDone } from "./jobs.ts";
 const config = loadConfig();
-const database = createDb(config.DATABASE_URL, config.POOL_SIZE, config.DATABASE_AUTH_TOKEN);
+const database = createDb(
+  config.DATABASE_URL,
+  config.POOL_SIZE,
+  config.DATABASE_AUTH_TOKEN,
+);
 await migrate(database);
 const kv = await Deno.openKv();
 const app = createApp(database, { config, kv });
 Deno.cron("purge old done tasks", "0 3 * * *", async () => {
-  const removed = await purgeOldDone(database, 30, app.cache, app.live, config.UPLOAD_DIR);
+  const removed = await purgeOldDone(
+    database,
+    30,
+    app.cache,
+    app.live,
+    config.UPLOAD_DIR,
+  );
   console.log(JSON.stringify({ job: "purge", removed }));
 });
 const server = Deno.serve({ port: config.PORT }, app.fetch);
 Deno.addSignalListener("SIGTERM", async () => {
-  app.live.close(); await server.shutdown(); kv.close(); database.close();
+  app.live.close();
+  await server.shutdown();
+  kv.close();
+  database.close();
 });

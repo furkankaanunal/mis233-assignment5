@@ -12,8 +12,12 @@ export const tasks = sqliteTable("tasks", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   userId: integer("user_id").notNull().references(() => users.id),
   title: text("title").notNull(),
-  status: text("status", { enum: ["todo", "in-progress", "done"] }).notNull().default("todo"),
-  priority: text("priority", { enum: ["low", "medium", "high"] }).notNull().default("medium"),
+  status: text("status", { enum: ["todo", "in-progress", "done"] }).notNull().default(
+    "todo",
+  ),
+  priority: text("priority", { enum: ["low", "medium", "high"] }).notNull().default(
+    "medium",
+  ),
   createdAt: integer("created_at").notNull().default(sql`(strftime('%s','now'))`),
   updatedAt: integer("updated_at").notNull().default(sql`(strftime('%s','now'))`),
   completedAt: integer("completed_at"),

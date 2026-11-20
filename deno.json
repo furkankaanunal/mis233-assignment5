@@ -14,7 +14,9 @@
     "db:migrate": "deno run -A --env-file=.env.example --env-file=.env scripts/migrate.ts",
     "seed": "deno run -A --env-file=.env.example --env-file=.env scripts/seed.ts",
     "benchmark": "deno run -A scripts/benchmark.ts",
-    "evidence": "deno run -A --unstable-kv --unstable-cron scripts/evidence.ts"
+    "evidence": "deno run -A --unstable-kv --unstable-cron scripts/evidence.ts",
+    "docker:verify": "deno run -A scripts/docker_verify.ts",
+    "cron:verify": "deno run -A --unstable-cron scripts/cron_probe.ts"
   },
   "imports": {
     "hono": "npm:hono@4.11.4",
