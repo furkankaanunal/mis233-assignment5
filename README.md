@@ -104,15 +104,15 @@ Deno, not curl, Docker or a running API.
 
 Bonuses 1–18 are implemented and exercised. Bonus 6 uses option B (the custom SQLite pool,
 counted as two by the handout). The GitHub repository is created and populated; instructor
-access and live deployment are the remaining steps.
+access remains to be arranged. Bonus 19 is not claimed.
 
-| Bonus             | State                                                                                           |
-| ----------------- | ----------------------------------------------------------------------------------------------- |
-| 1–16              | Implemented; tests and recorded evidence included                                               |
-| 17 Docker         | Built and run in GitHub Actions; persistence and image size recorded                            |
-| 18 CI             | Real green, deliberate red, and fixed green runs linked below                                   |
-| 19 Deploy         | Configuration ready; account terms approval, remote database and public deployment still needed |
-| 20 Git repository | Private GitHub repository with incremental history; instructor access still needed              |
+| Bonus             | State                                                                              |
+| ----------------- | ---------------------------------------------------------------------------------- |
+| 1–16              | Implemented; tests and recorded evidence included                                  |
+| 17 Docker         | Built and run in GitHub Actions; persistence and image size recorded               |
+| 18 CI             | Real green, deliberate red, and fixed green runs linked below                      |
+| 19 Deploy         | Not claimed; the API has not been publicly deployed                                |
+| 20 Git repository | Private GitHub repository with incremental history; instructor access still needed |
 
 ## Bonus 1: Migrations with Drizzle Kit
 
@@ -354,27 +354,11 @@ evidence/docker-ci.log.
 
 ## Bonus 19: Deploy
 
-**Configuration prepared; no live deployment claimed yet.** createDb accepts
-DATABASE_AUTH_TOKEN and a hosted libSQL URL. Do not use file: storage on a host with
-ephemeral disk. deno.json declares the dynamic runtime entrypoint src/main.ts and enables
-kv and cron in its unstable array. No custom runtime flags need to be entered in the
-hosting dashboard. main.ts handles SIGINT and SIGTERM for graceful shutdown.
-
-The Deno Deploy sign-in page was reached, but signing in also accepts its Terms of
-Service. That acceptance is waiting for the account owner's confirmation. No public URL or
-hosted curl output has been invented.
-
-After approval, provision a remote libSQL database, create an app at
-https://console.deno.com, attach a Deno KV database, and configure APP_ENV, PORT,
-DATABASE_URL, DATABASE_AUTH_TOKEN and a private JWT_SECRET. Keep drizzle/ in the deployed
-source. Deno Deploy supports app creation with `deno deploy create` and publishing with
-`deno deploy --prod`. Verify /health, registration and login against the actual URL and
-append those outputs here. The file-based image store needs persistent storage for durable
-cloud uploads.
-
-Configuration references: [app builds](https://docs.deno.com/deploy/reference/builds/),
-[runtime](https://docs.deno.com/deploy/reference/runtime/),
-[unstable features](https://docs.deno.com/runtime/reference/deno_json/).
+**Not claimed.** The API has not been publicly deployed, so this submission does not
+include a live URL or hosted curl output. The local and Docker API are fully implemented
+and tested. The optional deployment configuration remains available: createDb accepts a
+hosted libSQL URL and DATABASE_AUTH_TOKEN; deno.json declares src/main.ts as a dynamic
+entrypoint and enables KV and cron.
 
 ## Bonus 20: Git repository
 
