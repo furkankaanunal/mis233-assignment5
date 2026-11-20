@@ -1,0 +1,11 @@
+.git
+.github
+ui
+tests
+scripts
+evidence
+*.db*
+.env
+.env.production
+uploads
+node_modules

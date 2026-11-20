@@ -53,6 +53,19 @@ export async function benchmark() {
     );
     const after = { plan: (await plan()).rows, msPerQuery: await timed() };
     logs.length = 0;
+    // The handout's first summary version: load rows, then count each status.
+    await database.db.select().from(tasks).where(
+      and(eq(tasks.userId, 2), isNull(tasks.deletedAt)),
+    );
+    const naiveCounts = { todo: 0, "in-progress": 0, done: 0 };
+    for (const status of ["todo", "in-progress", "done"] as const) {
+      const [{ n }] = await database.db.select({ n: count() }).from(tasks).where(
+        and(eq(tasks.userId, 2), isNull(tasks.deletedAt), eq(tasks.status, status)),
+      );
+      naiveCounts[status] = n;
+    }
+    const naiveSummary = { queries: logs.length, sql: [...logs], summary: naiveCounts };
+    logs.length = 0;
     // Deliberately naive: load rows, then look up each task owner's email again.
     const rows = await database.db.select().from(tasks).where(eq(tasks.userId, 2)).limit(
       10,
@@ -68,7 +81,16 @@ export async function benchmark() {
       tasks,
     ).where(and(eq(tasks.userId, 2), isNull(tasks.deletedAt))).groupBy(tasks.status);
     const grouped = { queries: logs.length, sql: [...logs], summary };
-    return { rows: 20000, users: 20, iterations: 30, before, after, naive, grouped };
+    return {
+      rows: 20000,
+      users: 20,
+      iterations: 30,
+      before,
+      after,
+      naiveSummary,
+      naive,
+      grouped,
+    };
   } finally {
     database.close();
     await Deno.remove(dir, { recursive: true });

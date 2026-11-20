@@ -1,0 +1,11 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      JWT_SECRET: ${JWT_SECRET:?Set a private JWT_SECRET of at least 32 characters}
+    volumes:
+      - tasksdata:/data
+volumes:
+  tasksdata:

@@ -25,7 +25,7 @@ export function createDb(url: string, size = 3, authToken?: string, logger?: Log
 export type Db = ReturnType<typeof createDb>;
 export async function migrate(database: Db) {
   await runMigrations(database.db, {
-    migrationsFolder: new URL("../drizzle", import.meta.url).pathname,
+    migrationsFolder: decodeURIComponent(new URL("../drizzle", import.meta.url).pathname),
   });
   for (const { client } of database.connections) {
     await client.execute("PRAGMA foreign_keys=ON");
