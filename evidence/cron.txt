@@ -1,0 +1,2 @@
+{"probe":"cron","schedule":"* * * * *","waitingSince":"2026-11-20T12:27:08.465Z"}
+{"job":"purge","removed":1,"secondRun":0,"firedAt":"2026-11-20T12:28:00.011Z"}

@@ -1,0 +1,6 @@
+deno task dev -> HTTP 200 {"ok":true}
+Task dev deno run -A --unstable-kv --unstable-cron --env-file=.env.example --env-file=.env --watch src/main.ts
+Watcher Process started.
+Listening on http://0.0.0.0:8000/ (http://localhost:8000/)
+{"requestId":"fc47a989-5097-47b0-892e-e01a3e65fa5e","method":"GET","path":"/health","status":200,"ms":2}
+Watcher Process finished. Restarting on file change...

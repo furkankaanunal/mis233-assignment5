@@ -1,0 +1,3 @@
+Opened two authenticated connections for the same user and one for another user.
+Both owner connections received created, updated and deleted with the same task payloads.
+The other user's connection received 0 events.

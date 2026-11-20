@@ -1,0 +1,54 @@
+Task test deno test -A --unstable-kv --unstable-cron tests/
+Check tests/auth_test.ts
+Check tests/bonus_test.ts
+Check tests/health_test.ts
+Check tests/live_test.ts
+Check tests/tasks_test.ts
+running 11 tests from ./tests/auth_test.ts
+registration stores bcrypt but returns only id and email ... ok (173ms)
+duplicate normalized email is 409 ... ok (261ms)
+invalid credentials body and short password are 400 ... ok (28ms)
+wrong email and wrong password use the same 401 message ... ok (214ms)
+every API path requires authentication ... ok (6ms)
+tampered, expired and wrong-secret JWTs are rejected ... ok (146ms)
+RBAC returns 401, 403 and 200 and never exposes hashes ... ok (236ms)
+sixth login after five failures returns 429 even for correct password ... ok (499ms)
+limiter window expires and successful login clears failures ... ok (951ms)
+logs omit passwords and WebSocket query tokens ... ok (203ms)
+bad WebSocket token is 401 ... ok (7ms)
+running 10 tests from ./tests/bonus_test.ts
+20 jobs on a pool of 3 finish with at most 3 active ... ok (22ms)
+pool releases on rejection and serves waiters FIFO ... ok (0ms)
+cache hit skips load, is scoped by owner and mutation invalidates ... ok (318ms)
+cache lock prevents a concurrent update from leaving a stale fill ... ok (147ms)
+purge removes old completions only, invalidates cache and is idempotent ... ok (149ms)
+seed is safe twice and refuses production ... ok (146ms)
+attachment upload and download preserve bytes and invalidate cached task ... ok (338ms)
+attachment rejects missing file ... ok (166ms)
+attachment rejects oversized ... ok (191ms)
+attachment rejects wrong type ... ok (157ms)
+running 7 tests from ./tests/health_test.ts
+/health is healthy ... ok (25ms)
+/healthz is healthy ... ok (14ms)
+/readyz is healthy ... ok (14ms)
+readiness reports database failure ... ok (8ms)
+bad configuration and development production secret are refused ... ok (1ms)
+unknown route errors have request id and issues ... ok (6ms)
+OpenAPI describes required and bonus routes with bearer security ... ok (36ms)
+running 1 test from ./tests/live_test.ts
+live updates reach both owner connections but never another user ... ok (444ms)
+running 11 tests from ./tests/tasks_test.ts
+CRUD uses task defaults and owner ... ok (199ms)
+another user sees 404 on read, update, delete, restore and attachment ... ok (318ms)
+invalid status, priority and title are 400 ... ok (159ms)
+malformed JSON uses the common 400 error shape ... ok (154ms)
+page two holds the right items and counts only this user ... ok (326ms)
+bad page, limit and unknown query values are 400 ... ok (156ms)
+filter returns matching statuses and summary is grouped ... ok (163ms)
+delete hides a row and restore works once ... ok (191ms)
+welcome task failure rolls registration back ... ok (80ms)
+invalid task id is 400 and missing task is 404 ... ok (153ms)
+SQL-looking title is stored as data ... ok (143ms)
+
+ok | 40 passed | 0 failed (8s)
+

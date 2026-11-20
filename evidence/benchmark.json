@@ -1,0 +1,73 @@
+{
+  "rows": 20000,
+  "users": 20,
+  "iterations": 30,
+  "before": {
+    "plan": [
+      {
+        "id": 2,
+        "parent": 0,
+        "notused": 0,
+        "detail": "SCAN tasks"
+      }
+    ],
+    "msPerQuery": 5.48
+  },
+  "after": {
+    "plan": [
+      {
+        "id": 3,
+        "parent": 0,
+        "notused": 0,
+        "detail": "SEARCH tasks USING INDEX idx_tasks_user_status (user_id=? AND status=?)"
+      }
+    ],
+    "msPerQuery": 4.568
+  },
+  "naiveSummary": {
+    "queries": 4,
+    "sql": [
+      "select \"id\", \"user_id\", \"title\", \"status\", \"priority\", \"created_at\", \"updated_at\", \"completed_at\", \"deleted_at\", \"attachment\", \"due_date\" from \"tasks\" where (\"tasks\".\"user_id\" = ? and \"tasks\".\"deleted_at\" is null) -- [2]",
+      "select count(*) from \"tasks\" where (\"tasks\".\"user_id\" = ? and \"tasks\".\"deleted_at\" is null and \"tasks\".\"status\" = ?) -- [2,\"todo\"]",
+      "select count(*) from \"tasks\" where (\"tasks\".\"user_id\" = ? and \"tasks\".\"deleted_at\" is null and \"tasks\".\"status\" = ?) -- [2,\"in-progress\"]",
+      "select count(*) from \"tasks\" where (\"tasks\".\"user_id\" = ? and \"tasks\".\"deleted_at\" is null and \"tasks\".\"status\" = ?) -- [2,\"done\"]"
+    ],
+    "summary": {
+      "todo": 500,
+      "in-progress": 0,
+      "done": 500
+    }
+  },
+  "naive": {
+    "queries": 11,
+    "sql": [
+      "select \"id\", \"user_id\", \"title\", \"status\", \"priority\", \"created_at\", \"updated_at\", \"completed_at\", \"deleted_at\", \"attachment\", \"due_date\" from \"tasks\" where \"tasks\".\"user_id\" = ? limit ? -- [2,10]",
+      "select \"email\" from \"users\" where \"users\".\"id\" = ? -- [2]",
+      "select \"email\" from \"users\" where \"users\".\"id\" = ? -- [2]",
+      "select \"email\" from \"users\" where \"users\".\"id\" = ? -- [2]",
+      "select \"email\" from \"users\" where \"users\".\"id\" = ? -- [2]",
+      "select \"email\" from \"users\" where \"users\".\"id\" = ? -- [2]",
+      "select \"email\" from \"users\" where \"users\".\"id\" = ? -- [2]",
+      "select \"email\" from \"users\" where \"users\".\"id\" = ? -- [2]",
+      "select \"email\" from \"users\" where \"users\".\"id\" = ? -- [2]",
+      "select \"email\" from \"users\" where \"users\".\"id\" = ? -- [2]",
+      "select \"email\" from \"users\" where \"users\".\"id\" = ? -- [2]"
+    ]
+  },
+  "grouped": {
+    "queries": 1,
+    "sql": [
+      "select \"status\", count(*) from \"tasks\" where (\"tasks\".\"user_id\" = ? and \"tasks\".\"deleted_at\" is null) group by \"tasks\".\"status\" -- [2]"
+    ],
+    "summary": [
+      {
+        "status": "done",
+        "n": 500
+      },
+      {
+        "status": "todo",
+        "n": 500
+      }
+    ]
+  }
+}
