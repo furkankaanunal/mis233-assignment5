@@ -160,3 +160,51 @@ Deno.test("bad WebSocket token is 401", () =>
   fixture(async (f) => {
     assertEquals((await request(f, "/ws?token=bad")).status, 401);
   }));
+Deno.test("passwords longer than bcrypt's 72-byte limit are rejected", () =>
+  fixture(async (f) => {
+    const prefix = "é".repeat(36);
+    const res = await request(f, "/auth/register", "POST", {
+      email: "unicode@example.com",
+      password: prefix + "X",
+    });
+    assertEquals(res.status, 400);
+    assertEquals((await f.database.db.select().from(users)).length, 0);
+    assertEquals(
+      (await request(f, "/auth/login", "POST", {
+        email: "unicode@example.com",
+        password: prefix + "Y",
+      })).status,
+      400,
+    );
+    assertEquals(
+      (await request(f, "/auth/register", "POST", {
+        email: "boundary@example.com",
+        password: prefix,
+      })).status,
+      201,
+    );
+    assertEquals(
+      (await request(f, "/auth/login", "POST", {
+        email: "boundary@example.com",
+        password: prefix,
+      })).status,
+      200,
+    );
+    assertEquals(
+      (await request(f, "/auth/login", "POST", {
+        email: "boundary@example.com",
+        password: "é".repeat(35) + "ê",
+      })).status,
+      401,
+    );
+  }));
+Deno.test("short wrong login password follows the handout's 401 example", () =>
+  fixture(async (f) => {
+    await account(f);
+    const res = await request(f, "/auth/login", "POST", {
+      email: "student@example.com",
+      password: "wrong",
+    });
+    assertEquals(res.status, 401);
+    assertEquals((await res.json()).error, "invalid email or password");
+  }));

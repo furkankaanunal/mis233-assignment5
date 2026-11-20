@@ -76,6 +76,24 @@
         ],
         "additionalProperties": false
       },
+      "LoginCredentials": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Credentials"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "password": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 72
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      },
       "Task": {
         "type": "object",
         "properties": {
@@ -489,7 +507,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Credentials"
+                "$ref": "#/components/schemas/LoginCredentials"
               }
             }
           }

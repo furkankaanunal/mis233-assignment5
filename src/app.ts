@@ -25,6 +25,7 @@ import {
   ErrorSchema,
   Id,
   json,
+  LoginCredentials,
   Ok,
   PageQuery,
   TaskBody,
@@ -176,7 +177,13 @@ export function createApp(database: Db, options: AppOptions) {
     createRoute({
       method: "post",
       path: "/auth/login",
-      request: credentials,
+      request: {
+        ...empty,
+        body: {
+          required: true,
+          content: { "application/json": { schema: LoginCredentials } },
+        },
+      },
       responses: {
         ...errors,
         200: json(z.object({ token: z.string() })),
@@ -468,10 +475,16 @@ export function createApp(database: Db, options: AppOptions) {
         let task;
         try {
           [task] = await db.update(tasks).set({ attachment: name, updatedAt: seconds() })
-            .where(eq(tasks.id, id)).returning();
+            .where(
+              and(eq(tasks.id, id), eq(tasks.userId, owner), isNull(tasks.deletedAt)),
+            ).returning();
         } catch (err) {
           await Deno.remove(path);
           throw err;
+        }
+        if (!task) {
+          await Deno.remove(path);
+          return fail(c, 404, "task not found");
         }
         await cache.invalidate(owner, id);
         if (existing.attachment) {

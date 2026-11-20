@@ -44,6 +44,10 @@ completedAt, deletedAt, attachment and dueDate. Timestamps are Unix seconds; cre
 a SQL default. dueDate is an optional ISO calendar date. The database also checks valid
 status and priority values.
 
+Passwords must fit bcrypt's 72-byte UTF-8 input limit. Registration requires at least
+eight characters; login accepts a nonempty password so a short incorrect password returns
+the handout's 401 response.
+
 The API uses one-hour HS256 JWTs instead of the starter's sessions table (Bonus 7). They
 carry user id and role, with issuer and audience checks. Password hashes are never
 included in responses. Registration always grants role `user`; the non-production seed
@@ -83,7 +87,7 @@ concatenated user input.
 
 ## Verification
 
-40 tests passed, including real WebSocket connections. Type-check and lint also passed;
+42 tests passed, including real WebSocket connections. Type-check and lint also passed;
 raw output is in `evidence/tests.txt`, `check.txt` and `lint.txt`. `evidence/startup.txt`
 records an actual `deno task dev` health request.
 
@@ -103,16 +107,16 @@ Deno, not curl, Docker or a running API.
 ## Bonus status
 
 Bonuses 1–18 are implemented and exercised. Bonus 6 uses option B (the custom SQLite pool,
-counted as two by the handout). The GitHub repository is created and populated; instructor
-access remains to be arranged. Bonus 19 is not claimed.
+counted as two by the handout). The GitHub repository is public and populated. Bonus 19 is
+not claimed.
 
-| Bonus             | State                                                                              |
-| ----------------- | ---------------------------------------------------------------------------------- |
-| 1–16              | Implemented; tests and recorded evidence included                                  |
-| 17 Docker         | Built and run in GitHub Actions; persistence and image size recorded               |
-| 18 CI             | Real green, deliberate red, and fixed green runs linked below                      |
-| 19 Deploy         | Not claimed; the API has not been publicly deployed                                |
-| 20 Git repository | Private GitHub repository with incremental history; instructor access still needed |
+| Bonus             | State                                                                            |
+| ----------------- | -------------------------------------------------------------------------------- |
+| 1–16              | Implemented; tests and recorded evidence included                                |
+| 17 Docker         | Built and run in GitHub Actions; persistence and image size recorded             |
+| 18 CI             | Real green, deliberate red, and fixed green runs linked below                    |
+| 19 Deploy         | Not claimed; the API has not been publicly deployed                              |
+| 20 Git repository | Public GitHub repository with incremental history; accessible without signing in |
 
 ## Bonus 1: Migrations with Drizzle Kit
 
@@ -364,11 +368,9 @@ entrypoint and enables KV and cron.
 
 Repository: https://github.com/furkankaanunal/mis233-assignment5
 
-The repository was created as **private**. It contains incremental commits for the
-model/pool, API, tests, container checks and documentation, plus the isolated CI
-demonstration branch. Instructor access is still required: invite the instructor's
-announced GitHub username, or make the repository public with the owner's approval before
-submitting its link.
+The repository is **public**. The instructor can view the source, commit history and CI
+runs without an invitation. It contains incremental commits for the model/pool, API,
+tests, container checks and documentation, plus the isolated CI demonstration branch.
 
 history.bundle preserves the local source history as an offline backup:
 
@@ -426,6 +428,15 @@ are not examples invented to fill the log requirement.
 11. Stopping the watched dev process initially caused **BadResource: Bad resource ID**
     when the shutdown callback ran twice. A closing guard made shutdown idempotent; the
     repeated startup/shutdown probe completed cleanly.
+
+12. Final review found that bcrypt silently truncates passwords after 72 bytes. A 73-byte
+    Unicode password registered successfully, and changing its suffix still logged in.
+    Validation now rejects passwords above 72 UTF-8 bytes; the added regression test
+    passes.
+13. The handout's wrong-password example uses `wrong` (five characters) and expects 401.
+    Sharing the registration schema made it return 400. Login now validates a nonempty
+    password separately from registration's eight-character minimum; a regression test
+    checks the handout's exact example.
 
 ## Actual curl examples
 

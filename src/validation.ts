@@ -1,9 +1,16 @@
 // Furkan Kaan Ünal — 2024502225
 import { z } from "@hono/zod-openapi";
+const Password = z.string().max(72).refine(
+  (value) => new TextEncoder().encode(value).length <= 72,
+  "password must be at most 72 UTF-8 bytes",
+);
 export const Credentials = z.object({
   email: z.email().trim().toLowerCase(),
-  password: z.string().min(8).max(72),
+  password: Password.min(8),
 }).strict().openapi("Credentials");
+export const LoginCredentials = Credentials.extend({
+  password: Password.min(1),
+}).openapi("LoginCredentials");
 export const TaskBody = z.object({
   title: z.string().trim().min(1).max(100),
   status: z.enum(["todo", "in-progress", "done"]).default("todo"),
