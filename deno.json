@@ -29,9 +29,9 @@
     "drizzle-orm/libsql/migrator": "npm:drizzle-orm@0.44.7/libsql/migrator",
     "@hono/zod-openapi": "npm:@hono/zod-openapi@1.1.5",
     "jose": "npm:jose@6.1.3",
-    "hono/": "npm:hono@4.11.4/",
     "drizzle-orm/logger": "npm:drizzle-orm@0.44.7/logger",
-    "@hono/swagger-ui": "npm:@hono/swagger-ui@0.5.2"
+    "@hono/swagger-ui": "npm:@hono/swagger-ui@0.5.2",
+    "hono/utils/http-status": "npm:hono@4.11.4/utils/http-status"
   },
   "fmt": {
     "lineWidth": 90,
@@ -44,5 +44,6 @@
     "exclude": [
       "drizzle/meta"
     ]
-  }
+  },
+  "nodeModulesDir": "auto"
 }
