@@ -87,12 +87,13 @@ concatenated user input.
 raw output is in `evidence/tests.txt`, `check.txt` and `lint.txt`. `evidence/startup.txt`
 records an actual `deno task dev` health request.
 
-The checking machine restricts the network-interface system call used by the libSQL native
-platform detector. For execution here, LIBSQL_JS_DEV selected a local link to the **same
-installed native binary**. No database behavior was mocked and no dependency changes are
-shipped. The normal commands above use libSQL's default platform detector on an ordinary
-machine. This environment-only workaround is recorded in My own log rather than hidden in
-project scripts.
+GitHub Actions also ran the four checks on a fresh Ubuntu runner with the standard
+dependency loader and no local native-driver workaround:
+[successful checks](https://github.com/furkankaanunal/mis233-assignment5/actions/runs/44737627126).
+The container build and persistence check also passed in
+[this run](https://github.com/furkankaanunal/mis233-assignment5/actions/runs/44737811650).
+The local platform-detection restriction and its execution-only workaround are recorded in
+My own log. Hosted CI required no such workaround.
 
 `deno task evidence` reproduces the curl transcript, benchmark, request logs and live
 connection probe. It also needs curl. `deno task cron:verify` runs the actual
@@ -101,17 +102,17 @@ Deno, not curl, Docker or a running API.
 
 ## Bonus status
 
-Bonuses 1–16 are implemented and exercised. Bonus 6 uses option B (the custom SQLite pool,
-counted as two by the handout). The final four have the files or instructions below, but
-their external proof is **not claimed as completed**.
+Bonuses 1–18 are implemented and exercised. Bonus 6 uses option B (the custom SQLite pool,
+counted as two by the handout). The GitHub repository is created and populated; instructor
+access and live deployment are the remaining steps.
 
-| Bonus             | State                                                                                     |
-| ----------------- | ----------------------------------------------------------------------------------------- |
-| 1–16              | Implemented; tests and recorded evidence included                                         |
-| 17 Docker         | Dockerfile, volume setup and verification script ready; container run not performed       |
-| 18 CI             | Workflow ready; hosted green/red run URLs still needed                                    |
-| 19 Deploy         | Remote libSQL configuration supported; hosted account setup and public URL still needed   |
-| 20 Git repository | Real local commit history included; GitHub publication and instructor access still needed |
+| Bonus             | State                                                                                           |
+| ----------------- | ----------------------------------------------------------------------------------------------- |
+| 1–16              | Implemented; tests and recorded evidence included                                               |
+| 17 Docker         | Built and run in GitHub Actions; persistence and image size recorded                            |
+| 18 CI             | Real green, deliberate red, and fixed green runs linked below                                   |
+| 19 Deploy         | Configuration ready; account terms approval, remote database and public deployment still needed |
+| 20 Git repository | Private GitHub repository with incremental history; instructor access still needed              |
 
 ## Bonus 1: Migrations with Drizzle Kit
 
@@ -301,67 +302,100 @@ cross-instance invalidation would require shared versioning or messaging.
 
 ## Bonus 17: Docker
 
-**Prepared, not yet claimed as executed.** Docker is not installed on the checking
-machine, so there is no invented container output or image size. Dockerfile uses the
-official Deno 2.6.3 image, caches dependencies, runs as the deno user and stores SQLite
-plus uploads under /data. compose.yaml mounts a named volume. A multi-stage image
-excluding development tooling could reduce size.
+**Built and verified in GitHub Actions.** Docker was unavailable locally, so I added a
+container job to the workflow and ran the actual build/restart check on its Ubuntu runner.
+[Successful run](https://github.com/furkankaanunal/mis233-assignment5/actions/runs/44737811650).
+The Dockerfile uses the official Deno 2.6.3 image, caches dependencies, runs as the deno
+user and stores SQLite plus uploads under /data. compose.yaml mounts a named volume.
+Actual output (full log: evidence/docker-ci.log):
+
+```text
+First registration: HTTP 201 {"id":1,"email":"docker@demo.example"}
+After container replacement using the same volume: HTTP 409 {"error":"email already registered","issues":[],"requestId":"7a8b1317-924a-4b83-a5d6-bbe42a33db70"}
+Image: 126791552 bytes; user=deno
+```
+
+The image was 126,791,552 bytes (about 121 MiB). A multi-stage image excluding
+migration-generation tooling could reduce its size. The second registration was made in a
+new container using the same named volume; 409 proves that the first account survived
+replacement.
 
 ```sh
-# Supply a private random value in your local environment first.
 export JWT_SECRET="$(deno eval 'console.log(crypto.randomUUID()+crypto.randomUUID())')"
 docker compose up --build -d
-# Or build, register, replace the container and verify persistent data automatically:
+# Reproduce the successful persistence check:
 deno task docker:verify
 ```
 
-The script requires a real Docker daemon, checks 201 before restart and 409 after restart,
-captures image size/user, and writes evidence/docker.txt only when those operations
-actually succeed. It removes only its own temporary container and volume. Permissions: net
-serves HTTP/remote DB; env reads config; read/write handle migrations, DB, files and KV;
-ffi loads SQLite's native driver; sys supports the driver's platform detection. No
+The verification script removes only its own temporary container and volume. Permissions:
+net serves HTTP/remote DB; env reads config; read/write handle migrations, DB, files and
+KV; ffi loads SQLite's native driver; sys supports the driver's platform detection. No
 --allow-run is used by the API.
 
 ## Bonus 18: Continuous integration
 
-**Workflow prepared; hosted run evidence pending.** .github/workflows/ci.yml runs fmt
---check, lint, task check and task test on push and pull requests. These four checks were
-executed locally. After pushing to GitHub, capture a green run URL. On a separate branch,
-add a deliberately failing assertion, push and capture a red run; then revert it and
-verify green. Do not claim local output as a hosted Actions run. No green/red URLs are
-available yet.
+.github/workflows/ci.yml runs fmt --check, lint, task check and task test on push and pull
+requests. A dependent container job builds the Docker image, checks data persistence and
+uploads the resulting transcript as an artifact.
+
+- [Green main run](https://github.com/furkankaanunal/mis233-assignment5/actions/runs/44737627126):
+  all four required checks passed.
+- [Intentional red run](https://github.com/furkankaanunal/mis233-assignment5/actions/runs/44737670184):
+  on ci-failure-demo, a formatted, type-correct test deliberately threw an Error.
+  Formatting, lint and check passed; test failed as intended.
+- [Fixed green run](https://github.com/furkankaanunal/mis233-assignment5/actions/runs/44737875861):
+  the demonstration test was removed on that branch and checks passed again.
+- [Green Docker run](https://github.com/furkankaanunal/mis233-assignment5/actions/runs/44737811650):
+  both test and container jobs passed.
+
+The red demonstration was isolated from main. Its failing test is not in this submission.
+Actual job logs are included as evidence/ci-green.log, evidence/ci-red.log and
+evidence/docker-ci.log.
 
 ## Bonus 19: Deploy
 
-**Prepared for account setup; no public deployment claimed.** createDb accepts
+**Configuration prepared; no live deployment claimed yet.** createDb accepts
 DATABASE_AUTH_TOKEN and a hosted libSQL URL. Do not use file: storage on a host with
-ephemeral disk. Configure the application entrypoint src/main.ts and set
-APP_ENV=production, PORT, DATABASE_URL, DATABASE_AUTH_TOKEN and a private JWT_SECRET in
-the hosting dashboard. Include drizzle/ in the deployed source. The start command needs
---unstable-kv and --unstable-cron.
+ephemeral disk. deno.json declares the dynamic runtime entrypoint src/main.ts and enables
+kv and cron in its unstable array. No custom runtime flags need to be entered in the
+hosting dashboard. main.ts handles SIGINT and SIGTERM for graceful shutdown.
 
-Use the Deno Deploy account's application creation flow (`deno deploy create`), then
-publish (`deno deploy --prod`) after configuration. Run the register/login curl commands
-below against the resulting public URL and record its /health response. No deployment
-account/database credentials were available in this session, so no URL or hosted output is
-supplied. For durable attachments on a cloud instance, add an object store or persistent
-volume before relying on them.
+The Deno Deploy sign-in page was reached, but signing in also accepts its Terms of
+Service. That acceptance is waiting for the account owner's confirmation. No public URL or
+hosted curl output has been invented.
+
+After approval, provision a remote libSQL database, create an app at
+https://console.deno.com, attach a Deno KV database, and configure APP_ENV, PORT,
+DATABASE_URL, DATABASE_AUTH_TOKEN and a private JWT_SECRET. Keep drizzle/ in the deployed
+source. Deno Deploy supports app creation with `deno deploy create` and publishing with
+`deno deploy --prod`. Verify /health, registration and login against the actual URL and
+append those outputs here. The file-based image store needs persistent storage for durable
+cloud uploads.
+
+Configuration references: [app builds](https://docs.deno.com/deploy/reference/builds/),
+[runtime](https://docs.deno.com/deploy/reference/runtime/),
+[unstable features](https://docs.deno.com/runtime/reference/deno_json/).
 
 ## Bonus 20: Git repository
 
-**Local history prepared; remote publication pending.** The project has real, incremental
-commits for the model/pool, API, tests, packaging and documentation. The supplied
-history.bundle preserves them; clone it with Git if needed:
+Repository: https://github.com/furkankaanunal/mis233-assignment5
+
+The repository was created as **private**. It contains incremental commits for the
+model/pool, API, tests, container checks and documentation, plus the isolated CI
+demonstration branch. Instructor access is still required: invite the instructor's
+announced GitHub username, or make the repository public with the owner's approval before
+submitting its link.
+
+history.bundle preserves the local source history as an offline backup:
 
 ```sh
 git clone history.bundle assignment5-history
 ```
 
-A new empty GitHub repository and instructor access are still needed. Add that remote,
-push main, and put its actual URL here. The bundle/history do not claim that a GitHub
-repository exists. The work was done in one session; it does not satisfy the handout's
-suggestion of commits spread over several days, and commit dates have not been fabricated.
-.gitignore excludes private environments, databases, uploads and node_modules.
+The work was done in one session; it does not satisfy the handout's suggestion of commits
+spread over several days, and commit dates have not been fabricated. .gitignore excludes
+private environments, databases, uploads and node_modules. A fresh GitHub Actions runner
+has already exercised all four checks from the remote source.
 
 ## My own log
 
@@ -398,6 +432,16 @@ are not examples invented to fill the log requirement.
 8. A task's creation age and completion age are different. Purging by createdAt would
    remove old tasks just marked done. completedAt plus a regression test keeps those tasks
    until they have actually been done for 30 days.
+
+9. Docker was missing locally. Rather than reporting an untested Dockerfile, the workflow
+   was extended to build the image and run the restart test in GitHub Actions. The
+   container job passed and reported a non-root image user.
+10. The deliberate CI failure produced **Intentional CI failure demonstration; main is
+    unaffected**. The red run stopped at the test step, and removing that one test
+    produced a green run on the same demonstration branch.
+11. Stopping the watched dev process initially caused **BadResource: Bad resource ID**
+    when the shutdown callback ran twice. A closing guard made shutdown idempotent; the
+    repeated startup/shutdown probe completed cleanly.
 
 ## Actual curl examples
 

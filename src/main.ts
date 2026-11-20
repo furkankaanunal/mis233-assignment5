@@ -30,7 +30,7 @@ const cron = Deno.cron(
 );
 const server = Deno.serve({ port: config.PORT }, app.fetch);
 let closing = false;
-Deno.addSignalListener("SIGTERM", async () => {
+const shutdown = async () => {
   if (closing) return;
   closing = true;
   app.live.close();
@@ -39,4 +39,6 @@ Deno.addSignalListener("SIGTERM", async () => {
   await server.shutdown();
   kv.close();
   database.close();
-});
+};
+Deno.addSignalListener("SIGTERM", shutdown);
+Deno.addSignalListener("SIGINT", shutdown);

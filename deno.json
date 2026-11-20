@@ -47,5 +47,15 @@
       "drizzle/meta"
     ]
   },
-  "nodeModulesDir": "auto"
+  "nodeModulesDir": "auto",
+  "unstable": [
+    "kv",
+    "cron"
+  ],
+  "deploy": {
+    "runtime": {
+      "type": "dynamic",
+      "entrypoint": "./src/main.ts"
+    }
+  }
 }

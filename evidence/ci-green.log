@@ -1,0 +1,388 @@
+﻿2026-11-20T12:39:41.7267018Z Current runner version: '2.338.2'
+2026-11-20T12:39:41.7302763Z ##[group]Runner Image Provisioner
+2026-11-20T12:39:41.7304511Z Hosted Compute Agent
+2026-11-20T12:39:41.7305568Z Version: 20261103.629
+2026-11-20T12:39:41.7306721Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-20T12:39:41.7308214Z Build Date: 2026-11-03T17:26:59Z
+2026-11-20T12:39:41.7309417Z Worker ID: {db716306-5b3d-40c4-805f-5d5cc8c258eb}
+2026-11-20T12:39:41.7310795Z Region: eastus
+2026-11-20T12:39:41.7311817Z Cloud: Azure
+2026-11-20T12:39:41.7313351Z ##[endgroup]
+2026-11-20T12:39:41.7316203Z ##[group]Operating System
+2026-11-20T12:39:41.7317405Z Ubuntu
+2026-11-20T12:39:41.7318364Z 26.04.1
+2026-11-20T12:39:41.7319310Z LTS
+2026-11-20T12:39:41.7320354Z ##[endgroup]
+2026-11-20T12:39:41.7321336Z ##[group]Runner Image
+2026-11-20T12:39:41.7322361Z Image: ubuntu-26.04
+2026-11-20T12:39:41.7323464Z Version: 20261111.196.1
+2026-11-20T12:39:41.7325938Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261111.196/images/ubuntu/Ubuntu2604-Readme.md
+2026-11-20T12:39:41.7328741Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261111.196
+2026-11-20T12:39:41.7330543Z ##[endgroup]
+2026-11-20T12:39:41.7332439Z ##[group]GITHUB_TOKEN Permissions
+2026-11-20T12:39:41.7335929Z Contents: read
+2026-11-20T12:39:41.7336997Z Metadata: read
+2026-11-20T12:39:41.7338140Z ##[endgroup]
+2026-11-20T12:39:41.7341220Z Secret source: Actions
+2026-11-20T12:39:41.7342954Z Cache mode: write
+2026-11-20T12:39:41.7344725Z Prepare workflow directory
+2026-11-20T12:39:41.7838722Z Prepare all required actions
+2026-11-20T12:39:41.7912693Z Getting action download info
+2026-11-20T12:39:42.0147742Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-20T12:39:42.1392724Z Download action repository 'denoland/setup-deno@v2' (SHA:22d081ff2d3a40755e97629de92e3bcbfa7cf2ed)
+2026-11-20T12:39:42.3602599Z Complete job name: test
+2026-11-20T12:39:42.4502363Z ##[group]Run actions/checkout@v4
+2026-11-20T12:39:42.4503287Z with:
+2026-11-20T12:39:42.4503807Z   repository: furkankaanunal/mis233-assignment5
+2026-11-20T12:39:42.4507993Z   token: ***
+2026-11-20T12:39:42.4508442Z   ssh-strict: true
+2026-11-20T12:39:42.4508897Z   ssh-user: git
+2026-11-20T12:39:42.4509356Z   persist-credentials: true
+2026-11-20T12:39:42.4509856Z   clean: true
+2026-11-20T12:39:42.4510318Z   sparse-checkout-cone-mode: true
+2026-11-20T12:39:42.4510854Z   fetch-depth: 1
+2026-11-20T12:39:42.4511301Z   fetch-tags: false
+2026-11-20T12:39:42.4511750Z   show-progress: true
+2026-11-20T12:39:42.4512204Z   lfs: false
+2026-11-20T12:39:42.4512622Z   submodules: false
+2026-11-20T12:39:42.4513074Z   set-safe-directory: true
+2026-11-20T12:39:42.4513591Z   allow-unsafe-pr-checkout: false
+2026-11-20T12:39:42.4514515Z ##[endgroup]
+2026-11-20T12:39:42.7392283Z Syncing repository: furkankaanunal/mis233-assignment5
+2026-11-20T12:39:42.8491426Z ##[group]Getting Git version info
+2026-11-20T12:39:42.8493098Z Working directory is '/home/runner/work/mis233-assignment5/mis233-assignment5'
+2026-11-20T12:39:42.8495641Z [command]/usr/bin/git version
+2026-11-20T12:39:42.8496565Z git version 2.56.1
+2026-11-20T12:39:42.8499530Z ##[endgroup]
+2026-11-20T12:39:42.8513670Z Temporarily overriding HOME='/home/runner/work/_temp/147347e4-da71-4279-9c8f-6cfe39ea1902' before making global git config changes
+2026-11-20T12:39:42.8518092Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-20T12:39:42.8520453Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/mis233-assignment5/mis233-assignment5
+2026-11-20T12:39:42.8524425Z Deleting the contents of '/home/runner/work/mis233-assignment5/mis233-assignment5'
+2026-11-20T12:39:42.8526779Z ##[group]Initializing the repository
+2026-11-20T12:39:42.8528505Z [command]/usr/bin/git init /home/runner/work/mis233-assignment5/mis233-assignment5
+2026-11-20T12:39:42.8530633Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-20T12:39:42.8532905Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-20T12:39:42.8534985Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-20T12:39:42.8536494Z hint: call:
+2026-11-20T12:39:42.8537290Z hint:
+2026-11-20T12:39:42.8538259Z hint: 	git config --global init.defaultBranch <name>
+2026-11-20T12:39:42.8539472Z hint:
+2026-11-20T12:39:42.8540614Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-20T12:39:42.8542477Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-20T12:39:42.8543979Z hint:
+2026-11-20T12:39:42.8545453Z hint: 	git branch -m <name>
+2026-11-20T12:39:42.8546491Z hint:
+2026-11-20T12:39:42.8547780Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-20T12:39:42.8550016Z Initialized empty Git repository in /home/runner/work/mis233-assignment5/mis233-assignment5/.git/
+2026-11-20T12:39:42.8553506Z [command]/usr/bin/git remote add origin https://github.com/furkankaanunal/mis233-assignment5
+2026-11-20T12:39:42.8560944Z ##[endgroup]
+2026-11-20T12:39:42.8562445Z ##[group]Disabling automatic garbage collection
+2026-11-20T12:39:42.8563760Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-20T12:39:42.8569582Z ##[endgroup]
+2026-11-20T12:39:42.8571433Z ##[group]Setting up auth
+2026-11-20T12:39:42.8572886Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-20T12:39:42.8577707Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-20T12:39:42.8980907Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-20T12:39:42.9018640Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-20T12:39:42.9384506Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-20T12:39:42.9422225Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-20T12:39:42.9711482Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-20T12:39:42.9757878Z ##[endgroup]
+2026-11-20T12:39:42.9759764Z ##[group]Fetching the repository
+2026-11-20T12:39:42.9770100Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +453598620248ef22b45b2bd7c7f01b9bf241e236:refs/remotes/origin/main
+2026-11-20T12:39:43.2502099Z From https://github.com/furkankaanunal/mis233-assignment5
+2026-11-20T12:39:43.2517565Z  * [new ref]         453598620248ef22b45b2bd7c7f01b9bf241e236 -> origin/main
+2026-11-20T12:39:43.2529404Z ##[endgroup]
+2026-11-20T12:39:43.2531552Z ##[group]Determining the checkout info
+2026-11-20T12:39:43.2537116Z ##[endgroup]
+2026-11-20T12:39:43.2538686Z [command]/usr/bin/git sparse-checkout disable
+2026-11-20T12:39:43.2575383Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-20T12:39:43.2622618Z ##[group]Checking out the ref
+2026-11-20T12:39:43.2625528Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-11-20T12:39:43.2736453Z Switched to a new branch 'main'
+2026-11-20T12:39:43.2743155Z branch 'main' set up to track 'origin/main'.
+2026-11-20T12:39:43.2754844Z ##[endgroup]
+2026-11-20T12:39:43.2800608Z [command]/usr/bin/git log -1 --format=%H
+2026-11-20T12:39:43.2830143Z 453598620248ef22b45b2bd7c7f01b9bf241e236
+2026-11-20T12:39:43.3176565Z ##[group]Run denoland/setup-deno@v2
+2026-11-20T12:39:43.3177877Z with:
+2026-11-20T12:39:43.3178835Z   deno-version: v2.6.3
+2026-11-20T12:39:43.3179956Z   deno-binary-name: deno
+2026-11-20T12:39:43.3181055Z   cache: false
+2026-11-20T12:39:43.3181993Z ##[endgroup]
+2026-11-20T12:39:43.5676256Z Going to install stable version 2.6.3.
+2026-11-20T12:39:43.5739486Z Downloading Deno from https://github.com/denoland/deno/releases/download/v2.6.3/deno-x86_64-unknown-linux-gnu.zip.
+2026-11-20T12:39:44.0489356Z [command]/usr/bin/unzip -o -q /home/runner/work/_temp/e3fd655f-44bb-40dc-b725-585be388aace
+2026-11-20T12:39:45.0096929Z Cached Deno to /opt/hostedtoolcache/deno/2.6.3/x64.
+2026-11-20T12:39:45.0129719Z Installation complete.
+2026-11-20T12:39:45.2206240Z ##[group]Run deno fmt --check
+2026-11-20T12:39:45.2206826Z [36;1mdeno fmt --check[0m
+2026-11-20T12:39:45.2349670Z shell: /usr/bin/bash -e {0}
+2026-11-20T12:39:45.2350030Z ##[endgroup]
+2026-11-20T12:39:45.3125660Z Checked 38 files
+2026-11-20T12:39:45.3205280Z ##[group]Run deno lint
+2026-11-20T12:39:45.3205653Z [36;1mdeno lint[0m
+2026-11-20T12:39:45.3256299Z shell: /usr/bin/bash -e {0}
+2026-11-20T12:39:45.3256632Z ##[endgroup]
+2026-11-20T12:39:45.3985299Z Checked 29 files
+2026-11-20T12:39:45.4060351Z ##[group]Run deno task check
+2026-11-20T12:39:45.4060752Z [36;1mdeno task check[0m
+2026-11-20T12:39:45.4111454Z shell: /usr/bin/bash -e {0}
+2026-11-20T12:39:45.4111766Z ##[endgroup]
+2026-11-20T12:39:45.4295592Z [0m[32mDownload[0m https://registry.npmjs.org/jose/-/jose-6.1.3.tgz
+2026-11-20T12:39:45.4313739Z [0m[32mDownload[0m https://registry.npmjs.org/zod/-/zod-4.3.5.tgz
+2026-11-20T12:39:45.4418019Z [0m[32mDownload[0m https://registry.npmjs.org/hono/-/hono-4.11.4.tgz
+2026-11-20T12:39:45.4450058Z [0m[32mDownload[0m https://registry.npmjs.org/drizzle-kit/-/drizzle-kit-0.31.8.tgz
+2026-11-20T12:39:45.4452217Z [0m[32mDownload[0m https://registry.npmjs.org/@hono/swagger-ui/-/swagger-ui-0.5.2.tgz
+2026-11-20T12:39:45.4477538Z [0m[32mDownload[0m https://registry.npmjs.org/@libsql/client/-/client-0.15.15.tgz
+2026-11-20T12:39:45.4498192Z [0m[32mDownload[0m https://registry.npmjs.org/bcryptjs/-/bcryptjs-3.0.3.tgz
+2026-11-20T12:39:45.4501318Z [0m[32mDownload[0m https://registry.npmjs.org/drizzle-orm/-/drizzle-orm-0.44.7.tgz
+2026-11-20T12:39:45.4503889Z [0m[32mDownload[0m https://registry.npmjs.org/@hono/zod-openapi/-/zod-openapi-1.1.5.tgz
+2026-11-20T12:39:45.4507368Z [0m[32mDownload[0m https://registry.npmjs.org/esbuild-register/-/esbuild-register-3.6.0.tgz
+2026-11-20T12:39:45.4512532Z [0m[32mDownload[0m https://registry.npmjs.org/@drizzle-team/brocli/-/brocli-0.10.2.tgz
+2026-11-20T12:39:45.4515230Z [0m[32mDownload[0m https://registry.npmjs.org/@esbuild-kit/esm-loader/-/esm-loader-2.6.5.tgz
+2026-11-20T12:39:45.4517953Z [0m[32mDownload[0m https://registry.npmjs.org/esbuild/-/esbuild-0.25.12.tgz
+2026-11-20T12:39:45.4520179Z [0m[32mDownload[0m https://registry.npmjs.org/@libsql/core/-/core-0.15.15.tgz
+2026-11-20T12:39:45.4522017Z [0m[32mDownload[0m https://registry.npmjs.org/promise-limit/-/promise-limit-2.7.0.tgz
+2026-11-20T12:39:45.4524103Z [0m[32mDownload[0m https://registry.npmjs.org/js-base64/-/js-base64-3.9.6.tgz
+2026-11-20T12:39:45.4526818Z [0m[32mDownload[0m https://registry.npmjs.org/@libsql/hrana-client/-/hrana-client-0.7.0.tgz
+2026-11-20T12:39:45.4529738Z [0m[32mDownload[0m https://registry.npmjs.org/libsql/-/libsql-0.5.29.tgz
+2026-11-20T12:39:45.4532684Z [0m[32mDownload[0m https://registry.npmjs.org/@hono/zod-validator/-/zod-validator-0.7.6.tgz
+2026-11-20T12:39:45.4535837Z [0m[32mDownload[0m https://registry.npmjs.org/@asteasolutions/zod-to-openapi/-/zod-to-openapi-8.5.0.tgz
+2026-11-20T12:39:45.4539087Z [0m[32mDownload[0m https://registry.npmjs.org/openapi3-ts/-/openapi3-ts-4.6.2.tgz
+2026-11-20T12:39:45.4541604Z [0m[32mDownload[0m https://registry.npmjs.org/debug/-/debug-4.4.3.tgz
+2026-11-20T12:39:45.4545309Z [0m[32mDownload[0m https://registry.npmjs.org/@esbuild-kit/core-utils/-/core-utils-3.3.2.tgz
+2026-11-20T12:39:45.4547959Z [0m[32mDownload[0m https://registry.npmjs.org/get-tsconfig/-/get-tsconfig-4.14.3.tgz
+2026-11-20T12:39:45.4550107Z [0m[32mDownload[0m https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.25.12.tgz
+2026-11-20T12:39:45.4551903Z [0m[32mDownload[0m https://registry.npmjs.org/@libsql/isomorphic-fetch/-/isomorphic-fetch-0.3.1.tgz
+2026-11-20T12:39:45.4570273Z [0m[32mDownload[0m https://registry.npmjs.org/@libsql/isomorphic-ws/-/isomorphic-ws-0.1.5.tgz
+2026-11-20T12:39:45.4572336Z [0m[32mDownload[0m https://registry.npmjs.org/node-fetch/-/node-fetch-3.3.2.tgz
+2026-11-20T12:39:45.4574318Z [0m[32mDownload[0m https://registry.npmjs.org/@neon-rs/load/-/load-0.0.4.tgz
+2026-11-20T12:39:45.4576506Z [0m[32mDownload[0m https://registry.npmjs.org/@libsql/linux-x64-gnu/-/linux-x64-gnu-0.5.29.tgz
+2026-11-20T12:39:45.4578348Z [0m[32mDownload[0m https://registry.npmjs.org/@libsql/linux-x64-musl/-/linux-x64-musl-0.5.29.tgz
+2026-11-20T12:39:45.4580631Z [0m[32mDownload[0m https://registry.npmjs.org/detect-libc/-/detect-libc-2.0.2.tgz
+2026-11-20T12:39:45.4582385Z [0m[32mDownload[0m https://registry.npmjs.org/yaml/-/yaml-2.9.1.tgz
+2026-11-20T12:39:45.4585495Z [0m[32mDownload[0m https://registry.npmjs.org/ms/-/ms-2.1.3.tgz
+2026-11-20T12:39:45.4587282Z [0m[32mDownload[0m https://registry.npmjs.org/source-map-support/-/source-map-support-0.5.21.tgz
+2026-11-20T12:39:45.4589201Z [0m[32mDownload[0m https://registry.npmjs.org/esbuild/-/esbuild-0.18.20.tgz
+2026-11-20T12:39:45.4591067Z [0m[32mDownload[0m https://registry.npmjs.org/resolve-pkg-maps/-/resolve-pkg-maps-1.0.0.tgz
+2026-11-20T12:39:45.4592951Z [0m[32mDownload[0m https://registry.npmjs.org/@types/ws/-/ws-8.18.2.tgz
+2026-11-20T12:39:45.4595557Z [0m[32mDownload[0m https://registry.npmjs.org/ws/-/ws-8.23.0.tgz
+2026-11-20T12:39:45.4597390Z [0m[32mDownload[0m https://registry.npmjs.org/formdata-polyfill/-/formdata-polyfill-4.0.10.tgz
+2026-11-20T12:39:45.4599669Z [0m[32mDownload[0m https://registry.npmjs.org/data-uri-to-buffer/-/data-uri-to-buffer-4.0.1.tgz
+2026-11-20T12:39:45.4601556Z [0m[32mDownload[0m https://registry.npmjs.org/fetch-blob/-/fetch-blob-3.2.0.tgz
+2026-11-20T12:39:45.4603966Z [0m[32mDownload[0m https://registry.npmjs.org/buffer-from/-/buffer-from-1.1.2.tgz
+2026-11-20T12:39:45.4606003Z [0m[32mDownload[0m https://registry.npmjs.org/source-map/-/source-map-0.6.1.tgz
+2026-11-20T12:39:45.4608061Z [0m[32mDownload[0m https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.18.20.tgz
+2026-11-20T12:39:45.4609706Z [0m[32mDownload[0m https://registry.npmjs.org/@types/node/-/node-26.6.6.tgz
+2026-11-20T12:39:45.4612323Z [0m[32mDownload[0m https://registry.npmjs.org/web-streams-polyfill/-/web-streams-polyfill-3.3.3.tgz
+2026-11-20T12:39:45.4615351Z [0m[32mDownload[0m https://registry.npmjs.org/node-domexception/-/node-domexception-1.0.0.tgz
+2026-11-20T12:39:45.4617343Z [0m[32mDownload[0m https://registry.npmjs.org/undici-types/-/undici-types-8.9.0.tgz
+2026-11-20T12:39:45.4924420Z [0m[32mInitialize[0m fetch-blob@3.2.0
+2026-11-20T12:39:45.5205255Z [0m[32mInitialize[0m jose@6.1.3
+2026-11-20T12:39:45.5217839Z [0m[32mInitialize[0m esbuild-register@3.6.0
+2026-11-20T12:39:45.5274818Z [0m[32mInitialize[0m js-base64@3.9.6
+2026-11-20T12:39:45.5397126Z [0m[32mInitialize[0m libsql@0.5.29
+2026-11-20T12:39:45.5645086Z [0m[32mInitialize[0m promise-limit@2.7.0
+2026-11-20T12:39:45.5704867Z [0m[32mInitialize[0m esbuild@0.25.12
+2026-11-20T12:39:45.5798405Z [0m[32mInitialize[0m detect-libc@2.0.2
+2026-11-20T12:39:45.5805186Z [0m[32mInitialize[0m get-tsconfig@4.14.3
+2026-11-20T12:39:45.5806150Z [0m[32mInitialize[0m openapi3-ts@4.6.2
+2026-11-20T12:39:45.5807033Z [0m[32mInitialize[0m bcryptjs@3.0.3
+2026-11-20T12:39:45.5807884Z [0m[32mInitialize[0m resolve-pkg-maps@1.0.0
+2026-11-20T12:39:45.5808717Z [0m[32mInitialize[0m esbuild@0.18.20
+2026-11-20T12:39:45.5809523Z [0m[32mInitialize[0m ms@2.1.3
+2026-11-20T12:39:45.5810337Z [0m[32mInitialize[0m @esbuild-kit/esm-loader@2.6.5
+2026-11-20T12:39:45.5813799Z [0m[32mDownload[0m https://registry.npmjs.org/@esbuild-kit%2fesm-loader
+2026-11-20T12:39:45.5815532Z [0m[32mInitialize[0m source-map-support@0.5.21
+2026-11-20T12:39:45.5816565Z [0m[32mInitialize[0m formdata-polyfill@4.0.10
+2026-11-20T12:39:45.5817804Z [0m[32mInitialize[0m @libsql/core@0.15.15
+2026-11-20T12:39:45.5818730Z [0m[32mInitialize[0m @esbuild-kit/core-utils@3.3.2
+2026-11-20T12:39:45.5819849Z [0m[32mDownload[0m https://registry.npmjs.org/@esbuild-kit%2fcore-utils
+2026-11-20T12:39:45.5820869Z [0m[32mInitialize[0m yaml@2.9.1
+2026-11-20T12:39:45.5821686Z [0m[32mInitialize[0m undici-types@8.9.0
+2026-11-20T12:39:45.5822581Z [0m[32mInitialize[0m @drizzle-team/brocli@0.10.2
+2026-11-20T12:39:45.5823505Z [0m[32mInitialize[0m node-domexception@1.0.0
+2026-11-20T12:39:45.5824748Z [0m[32mDownload[0m https://registry.npmjs.org/node-domexception
+2026-11-20T12:39:45.5825783Z [0m[32mInitialize[0m @types/ws@8.18.2
+2026-11-20T12:39:45.5826615Z [0m[32mInitialize[0m @neon-rs/load@0.0.4
+2026-11-20T12:39:45.5827524Z [0m[32mInitialize[0m @libsql/isomorphic-fetch@0.3.1
+2026-11-20T12:39:45.5828416Z [0m[32mInitialize[0m debug@4.4.3
+2026-11-20T12:39:45.5829469Z [0m[32mInitialize[0m @hono/zod-validator@0.7.6
+2026-11-20T12:39:45.5830397Z [0m[32mInitialize[0m source-map@0.6.1
+2026-11-20T12:39:45.5831292Z [0m[32mInitialize[0m @libsql/isomorphic-ws@0.1.5
+2026-11-20T12:39:45.5832208Z [0m[32mInitialize[0m data-uri-to-buffer@4.0.1
+2026-11-20T12:39:45.5833046Z [0m[32mInitialize[0m ws@8.23.0
+2026-11-20T12:39:45.5833856Z [0m[32mInitialize[0m @libsql/client@0.15.15
+2026-11-20T12:39:45.5834974Z [0m[32mInitialize[0m @hono/swagger-ui@0.5.2
+2026-11-20T12:39:45.5835918Z [0m[32mDownload[0m https://registry.npmjs.org/yaml
+2026-11-20T12:39:45.5836949Z [0m[32mInitialize[0m @asteasolutions/zod-to-openapi@8.5.0
+2026-11-20T12:39:45.5983600Z [0m[32mInitialize[0m buffer-from@1.1.2
+2026-11-20T12:39:45.6275785Z [0m[32mInitialize[0m node-fetch@3.3.2
+2026-11-20T12:39:45.6305110Z [0m[32mInitialize[0m @libsql/hrana-client@0.7.0
+2026-11-20T12:39:45.6327604Z [0m[32mInitialize[0m @hono/zod-openapi@1.1.5
+2026-11-20T12:39:45.6329012Z [0m[32mInitialize[0m @types/node@26.6.6
+2026-11-20T12:39:45.7120212Z [0m[32mInitialize[0m hono@4.11.4
+2026-11-20T12:39:45.7985253Z [0m[32mInitialize[0m zod@4.3.5
+2026-11-20T12:39:45.7986433Z [0m[32mInitialize[0m web-streams-polyfill@3.3.3
+2026-11-20T12:39:45.8474975Z [0m[32mInitialize[0m drizzle-kit@0.31.8
+2026-11-20T12:39:46.0211620Z [0m[32mInitialize[0m @esbuild/linux-x64@0.18.20
+2026-11-20T12:39:46.0235755Z [0m[32mInitialize[0m @libsql/linux-x64-gnu@0.5.29
+2026-11-20T12:39:46.0548405Z [0m[32mInitialize[0m @libsql/linux-x64-musl@0.5.29
+2026-11-20T12:39:46.0575362Z [0m[32mInitialize[0m drizzle-orm@0.44.7
+2026-11-20T12:39:46.0705739Z [0m[32mInitialize[0m @esbuild/linux-x64@0.25.12
+2026-11-20T12:39:46.1215243Z [0m[33mWarning[0m The following packages are deprecated:
+2026-11-20T12:39:46.1245069Z ┠─ [0m[38;5;245mnpm:node-domexception@1.0.0 (Use your platform's native DOMException instead)[0m
+2026-11-20T12:39:46.1246657Z ┠─ [0m[38;5;245mnpm:@esbuild-kit/esm-loader@2.6.5 (Merged into tsx: https://tsx.hirok.io)[0m
+2026-11-20T12:39:46.1266091Z ┖─ [0m[38;5;245mnpm:@esbuild-kit/core-utils@3.3.2 (Merged into tsx: https://tsx.hirok.io)[0m
+2026-11-20T12:39:46.1325443Z [0m[32mTask[0m [0m[36mcheck[0m deno check --unstable-kv --unstable-cron src/*.ts scripts/*.ts tests/*.ts drizzle.config.ts
+2026-11-20T12:39:46.1665783Z [0m[32mDownload[0m https://jsr.io/@std/assert/meta.json
+2026-11-20T12:39:46.1668455Z [0m[32mDownload[0m https://registry.npmjs.org/@hono%2fzod-openapi
+2026-11-20T12:39:46.1685135Z [0m[32mDownload[0m https://registry.npmjs.org/@hono%2fswagger-ui
+2026-11-20T12:39:46.1705287Z [0m[32mDownload[0m https://registry.npmjs.org/drizzle-orm
+2026-11-20T12:39:46.1713638Z [0m[32mDownload[0m https://registry.npmjs.org/bcryptjs
+2026-11-20T12:39:46.1739978Z [0m[32mDownload[0m https://registry.npmjs.org/jose
+2026-11-20T12:39:46.1741431Z [0m[32mDownload[0m https://registry.npmjs.org/hono
+2026-11-20T12:39:46.1742424Z [0m[32mDownload[0m https://registry.npmjs.org/zod
+2026-11-20T12:39:46.1743467Z [0m[32mDownload[0m https://registry.npmjs.org/@libsql%2fclient
+2026-11-20T12:39:46.1769596Z [0m[32mDownload[0m https://registry.npmjs.org/drizzle-kit
+2026-11-20T12:39:46.2655244Z [0m[32mDownload[0m https://jsr.io/@std/assert/1.0.19_meta.json
+2026-11-20T12:39:46.2950618Z [0m[32mDownload[0m https://jsr.io/@std/internal/meta.json
+2026-11-20T12:39:46.3665287Z [0m[32mDownload[0m https://jsr.io/@std/internal/1.0.14_meta.json
+2026-11-20T12:39:46.3815261Z [0m[32mDownload[0m https://jsr.io/@std/assert/1.0.19/mod.ts
+2026-11-20T12:39:46.3834935Z [0m[32mDownload[0m https://jsr.io/@std/assert/1.0.19/almost_equals.ts
+2026-11-20T12:39:46.3854831Z [0m[32mDownload[0m https://jsr.io/@std/assert/1.0.19/array_includes.ts
+2026-11-20T12:39:46.3868278Z [0m[32mDownload[0m https://jsr.io/@std/assert/1.0.19/equals.ts
+2026-11-20T12:39:46.3882870Z [0m[32mDownload[0m https://jsr.io/@std/assert/1.0.19/exists.ts
+2026-11-20T12:39:46.3883756Z [0m[32mDownload[0m https://jsr.io/@std/assert/1.0.19/false.ts
+2026-11-20T12:39:46.3885158Z [0m[32mDownload[0m https://jsr.io/@std/assert/1.0.19/greater_or_equal.ts
+2026-11-20T12:39:46.3885733Z [0m[32mDownload[0m https://jsr.io/@std/assert/1.0.19/greater.ts
+2026-11-20T12:39:46.3886251Z [0m[32mDownload[0m https://jsr.io/@std/assert/1.0.19/instance_of.ts
+2026-11-20T12:39:46.3886771Z [0m[32mDownload[0m https://jsr.io/@std/assert/1.0.19/is_error.ts
+2026-11-20T12:39:46.3887284Z [0m[32mDownload[0m https://jsr.io/@std/assert/1.0.19/less_or_equal.ts
+2026-11-20T12:39:46.3887760Z [0m[32mDownload[0m https://jsr.io/@std/assert/1.0.19/less.ts
+2026-11-20T12:39:46.3888385Z [0m[32mDownload[0m https://jsr.io/@std/assert/1.0.19/match.ts
+2026-11-20T12:39:46.3888907Z [0m[32mDownload[0m https://jsr.io/@std/assert/1.0.19/not_equals.ts
+2026-11-20T12:39:46.3889451Z [0m[32mDownload[0m https://jsr.io/@std/assert/1.0.19/not_instance_of.ts
+2026-11-20T12:39:46.3889967Z [0m[32mDownload[0m https://jsr.io/@std/assert/1.0.19/not_match.ts
+2026-11-20T12:39:46.3890482Z [0m[32mDownload[0m https://jsr.io/@std/assert/1.0.19/not_strict_equals.ts
+2026-11-20T12:39:46.3891016Z [0m[32mDownload[0m https://jsr.io/@std/assert/1.0.19/object_match.ts
+2026-11-20T12:39:46.3891528Z [0m[32mDownload[0m https://jsr.io/@std/assert/1.0.19/rejects.ts
+2026-11-20T12:39:46.3892017Z [0m[32mDownload[0m https://jsr.io/@std/assert/1.0.19/strict_equals.ts
+2026-11-20T12:39:46.3892532Z [0m[32mDownload[0m https://jsr.io/@std/assert/1.0.19/string_includes.ts
+2026-11-20T12:39:46.3893023Z [0m[32mDownload[0m https://jsr.io/@std/assert/1.0.19/throws.ts
+2026-11-20T12:39:46.3893478Z [0m[32mDownload[0m https://jsr.io/@std/assert/1.0.19/assert.ts
+2026-11-20T12:39:46.3893954Z [0m[32mDownload[0m https://jsr.io/@std/assert/1.0.19/assertion_error.ts
+2026-11-20T12:39:46.3894713Z [0m[32mDownload[0m https://jsr.io/@std/assert/1.0.19/equal.ts
+2026-11-20T12:39:46.3895175Z [0m[32mDownload[0m https://jsr.io/@std/assert/1.0.19/fail.ts
+2026-11-20T12:39:46.3895665Z [0m[32mDownload[0m https://jsr.io/@std/assert/1.0.19/unimplemented.ts
+2026-11-20T12:39:46.3896163Z [0m[32mDownload[0m https://jsr.io/@std/assert/1.0.19/unreachable.ts
+2026-11-20T12:39:46.3896647Z [0m[32mDownload[0m https://jsr.io/@std/internal/1.0.14/format.ts
+2026-11-20T12:39:46.3897142Z [0m[32mDownload[0m https://jsr.io/@std/internal/1.0.14/build_message.ts
+2026-11-20T12:39:46.3897621Z [0m[32mDownload[0m https://jsr.io/@std/internal/1.0.14/diff.ts
+2026-11-20T12:39:46.3898084Z [0m[32mDownload[0m https://jsr.io/@std/internal/1.0.14/diff_str.ts
+2026-11-20T12:39:46.3898556Z [0m[32mDownload[0m https://jsr.io/@std/internal/1.0.14/styles.ts
+2026-11-20T12:39:46.3899017Z [0m[32mDownload[0m https://jsr.io/@std/internal/1.0.14/types.ts
+2026-11-20T12:39:46.4299954Z [0m[32mCheck[0m src/app.ts
+2026-11-20T12:39:46.4300797Z [0m[32mCheck[0m src/auth.ts
+2026-11-20T12:39:46.4301605Z [0m[32mCheck[0m src/cache.ts
+2026-11-20T12:39:46.4302428Z [0m[32mCheck[0m src/config.ts
+2026-11-20T12:39:46.4303174Z [0m[32mCheck[0m src/db.ts
+2026-11-20T12:39:46.4303898Z [0m[32mCheck[0m src/errors.ts
+2026-11-20T12:39:46.4305130Z [0m[32mCheck[0m src/jobs.ts
+2026-11-20T12:39:46.4305824Z [0m[32mCheck[0m src/live.ts
+2026-11-20T12:39:46.4306509Z [0m[32mCheck[0m src/main.ts
+2026-11-20T12:39:46.4307193Z [0m[32mCheck[0m src/pool.ts
+2026-11-20T12:39:46.4307898Z [0m[32mCheck[0m src/rate_limit.ts
+2026-11-20T12:39:46.4308635Z [0m[32mCheck[0m src/schema.ts
+2026-11-20T12:39:46.4309355Z [0m[32mCheck[0m src/validation.ts
+2026-11-20T12:39:46.4310109Z [0m[32mCheck[0m scripts/benchmark.ts
+2026-11-20T12:39:46.4310888Z [0m[32mCheck[0m scripts/cron_probe.ts
+2026-11-20T12:39:46.4311678Z [0m[32mCheck[0m scripts/docker_verify.ts
+2026-11-20T12:39:46.4312462Z [0m[32mCheck[0m scripts/evidence.ts
+2026-11-20T12:39:46.4313222Z [0m[32mCheck[0m scripts/migrate.ts
+2026-11-20T12:39:46.4313970Z [0m[32mCheck[0m scripts/seed.ts
+2026-11-20T12:39:46.4314876Z [0m[32mCheck[0m tests/auth_test.ts
+2026-11-20T12:39:46.4315816Z [0m[32mCheck[0m tests/bonus_test.ts
+2026-11-20T12:39:46.4316633Z [0m[32mCheck[0m tests/health_test.ts
+2026-11-20T12:39:46.4317412Z [0m[32mCheck[0m tests/helpers.ts
+2026-11-20T12:39:46.4318149Z [0m[32mCheck[0m tests/live_test.ts
+2026-11-20T12:39:46.4318892Z [0m[32mCheck[0m tests/tasks_test.ts
+2026-11-20T12:39:46.4319643Z [0m[32mCheck[0m drizzle.config.ts
+2026-11-20T12:39:53.8481225Z ##[group]Run deno task test
+2026-11-20T12:39:53.8481535Z [36;1mdeno task test[0m
+2026-11-20T12:39:53.8533542Z shell: /usr/bin/bash -e {0}
+2026-11-20T12:39:53.8533797Z ##[endgroup]
+2026-11-20T12:39:53.8769399Z [0m[32mTask[0m [0m[36mtest[0m deno test -A --unstable-kv --unstable-cron tests/
+2026-11-20T12:39:53.8924926Z [0m[32mDownload[0m https://registry.npmjs.org/drizzle-orm
+2026-11-20T12:39:53.9213046Z [0m[32mCheck[0m tests/auth_test.ts
+2026-11-20T12:39:53.9213882Z [0m[32mCheck[0m tests/bonus_test.ts
+2026-11-20T12:39:53.9215039Z [0m[32mCheck[0m tests/health_test.ts
+2026-11-20T12:39:53.9215867Z [0m[32mCheck[0m tests/live_test.ts
+2026-11-20T12:39:53.9216566Z [0m[32mCheck[0m tests/tasks_test.ts
+2026-11-20T12:39:59.1325547Z [0m[38;5;245mrunning 11 tests from ./tests/auth_test.ts[0m
+2026-11-20T12:39:59.3268508Z registration stores bcrypt but returns only id and email ... [0m[32mok[0m [0m[38;5;245m(194ms)[0m
+2026-11-20T12:39:59.5691986Z duplicate normalized email is 409 ... [0m[32mok[0m [0m[38;5;245m(242ms)[0m
+2026-11-20T12:39:59.5836752Z invalid credentials body and short password are 400 ... [0m[32mok[0m [0m[38;5;245m(14ms)[0m
+2026-11-20T12:39:59.8215838Z wrong email and wrong password use the same 401 message ... [0m[32mok[0m [0m[38;5;245m(237ms)[0m
+2026-11-20T12:39:59.8321637Z every API path requires authentication ... [0m[32mok[0m [0m[38;5;245m(10ms)[0m
+2026-11-20T12:39:59.9972610Z tampered, expired and wrong-secret JWTs are rejected ... [0m[32mok[0m [0m[38;5;245m(164ms)[0m
+2026-11-20T12:40:00.2475815Z RBAC returns 401, 403 and 200 and never exposes hashes ... [0m[32mok[0m [0m[38;5;245m(250ms)[0m
+2026-11-20T12:40:00.7999743Z sixth login after five failures returns 429 even for correct password ... [0m[32mok[0m [0m[38;5;245m(552ms)[0m
+2026-11-20T12:40:01.8316761Z limiter window expires and successful login clears failures ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+2026-11-20T12:40:01.9932678Z logs omit passwords and WebSocket query tokens ... [0m[32mok[0m [0m[38;5;245m(161ms)[0m
+2026-11-20T12:40:02.0026518Z bad WebSocket token is 401 ... [0m[32mok[0m [0m[38;5;245m(9ms)[0m
+2026-11-20T12:40:02.1941975Z [0m[38;5;245mrunning 10 tests from ./tests/bonus_test.ts[0m
+2026-11-20T12:40:02.2176665Z 20 jobs on a pool of 3 finish with at most 3 active ... [0m[32mok[0m [0m[38;5;245m(23ms)[0m
+2026-11-20T12:40:02.2181677Z pool releases on rejection and serves waiters FIFO ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+2026-11-20T12:40:02.5786543Z cache hit skips load, is scoped by owner and mutation invalidates ... [0m[32mok[0m [0m[38;5;245m(360ms)[0m
+2026-11-20T12:40:02.7474682Z cache lock prevents a concurrent update from leaving a stale fill ... [0m[32mok[0m [0m[38;5;245m(168ms)[0m
+2026-11-20T12:40:02.9161040Z purge removes old completions only, invalidates cache and is idempotent ... [0m[32mok[0m [0m[38;5;245m(168ms)[0m
+2026-11-20T12:40:03.0829240Z seed is safe twice and refuses production ... [0m[32mok[0m [0m[38;5;245m(166ms)[0m
+2026-11-20T12:40:03.4263574Z attachment upload and download preserve bytes and invalidate cached task ... [0m[32mok[0m [0m[38;5;245m(343ms)[0m
+2026-11-20T12:40:03.5990215Z attachment rejects missing file ... [0m[32mok[0m [0m[38;5;245m(172ms)[0m
+2026-11-20T12:40:03.8835777Z attachment rejects oversized ... [0m[32mok[0m [0m[38;5;245m(283ms)[0m
+2026-11-20T12:40:04.0921214Z attachment rejects wrong type ... [0m[32mok[0m [0m[38;5;245m(209ms)[0m
+2026-11-20T12:40:04.3555051Z [0m[38;5;245mrunning 7 tests from ./tests/health_test.ts[0m
+2026-11-20T12:40:04.3985606Z /health is healthy ... [0m[32mok[0m [0m[38;5;245m(44ms)[0m
+2026-11-20T12:40:04.4098742Z /healthz is healthy ... [0m[32mok[0m [0m[38;5;245m(11ms)[0m
+2026-11-20T12:40:04.4230483Z /readyz is healthy ... [0m[32mok[0m [0m[38;5;245m(13ms)[0m
+2026-11-20T12:40:04.4332508Z readiness reports database failure ... [0m[32mok[0m [0m[38;5;245m(10ms)[0m
+2026-11-20T12:40:04.4350042Z bad configuration and development production secret are refused ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+2026-11-20T12:40:04.4455369Z unknown route errors have request id and issues ... [0m[32mok[0m [0m[38;5;245m(9ms)[0m
+2026-11-20T12:40:04.4780434Z OpenAPI describes required and bonus routes with bearer security ... [0m[32mok[0m [0m[38;5;245m(33ms)[0m
+2026-11-20T12:40:04.6548790Z [0m[38;5;245mrunning 1 test from ./tests/live_test.ts[0m
+2026-11-20T12:40:05.1135599Z live updates reach both owner connections but never another user ... [0m[32mok[0m [0m[38;5;245m(458ms)[0m
+2026-11-20T12:40:05.2948395Z [0m[38;5;245mrunning 11 tests from ./tests/tasks_test.ts[0m
+2026-11-20T12:40:05.5034837Z CRUD uses task defaults and owner ... [0m[32mok[0m [0m[38;5;245m(208ms)[0m
+2026-11-20T12:40:05.8219840Z another user sees 404 on read, update, delete, restore and attachment ... [0m[32mok[0m [0m[38;5;245m(318ms)[0m
+2026-11-20T12:40:05.9851733Z invalid status, priority and title are 400 ... [0m[32mok[0m [0m[38;5;245m(163ms)[0m
+2026-11-20T12:40:06.1467637Z malformed JSON uses the common 400 error shape ... [0m[32mok[0m [0m[38;5;245m(161ms)[0m
+2026-11-20T12:40:06.4675082Z page two holds the right items and counts only this user ... [0m[32mok[0m [0m[38;5;245m(319ms)[0m
+2026-11-20T12:40:06.6302566Z bad page, limit and unknown query values are 400 ... [0m[32mok[0m [0m[38;5;245m(163ms)[0m
+2026-11-20T12:40:06.7993418Z filter returns matching statuses and summary is grouped ... [0m[32mok[0m [0m[38;5;245m(167ms)[0m
+2026-11-20T12:40:07.0136468Z delete hides a row and restore works once ... [0m[32mok[0m [0m[38;5;245m(215ms)[0m
+2026-11-20T12:40:07.1018668Z welcome task failure rolls registration back ... [0m[32mok[0m [0m[38;5;245m(88ms)[0m
+2026-11-20T12:40:07.2609606Z invalid task id is 400 and missing task is 404 ... [0m[32mok[0m [0m[38;5;245m(159ms)[0m
+2026-11-20T12:40:07.4270016Z SQL-looking title is stored as data ... [0m[32mok[0m [0m[38;5;245m(165ms)[0m
+2026-11-20T12:40:07.4405145Z 
+2026-11-20T12:40:07.4405999Z [0m[32mok[0m | 40 passed | 0 failed [0m[38;5;245m(8s)[0m
+2026-11-20T12:40:07.4414717Z 
+2026-11-20T12:40:07.4870076Z Post job cleanup.
+2026-11-20T12:40:07.6202475Z Caching is not enabled. Caching is skipped.
+2026-11-20T12:40:07.6485744Z Post job cleanup.
+2026-11-20T12:40:07.7541548Z [command]/usr/bin/git version
+2026-11-20T12:40:07.7594889Z git version 2.56.1
+2026-11-20T12:40:07.7650069Z Temporarily overriding HOME='/home/runner/work/_temp/4fc59310-95e6-47ac-bc34-2e1d3f4d79bb' before making global git config changes
+2026-11-20T12:40:07.7659496Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-20T12:40:07.7666395Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/mis233-assignment5/mis233-assignment5
+2026-11-20T12:40:07.7752594Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-20T12:40:07.7825862Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-20T12:40:07.8597223Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-20T12:40:07.8682446Z http.https://github.com/.extraheader
+2026-11-20T12:40:07.8795260Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-20T12:40:07.8856403Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-20T12:40:07.9245435Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-20T12:40:07.9375485Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-20T12:40:07.9969655Z Cleaning up orphan processes
+2026-11-20T12:40:08.0342651Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
