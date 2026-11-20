@@ -14,3 +14,17 @@ jobs:
       - run: deno lint
       - run: deno task check
       - run: deno task test
+  container:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.6.3
+      - name: Build image and verify persistence after container replacement
+        run: deno task docker:verify
+      - uses: actions/upload-artifact@v4
+        with:
+          name: docker-persistence-evidence
+          path: evidence/docker.txt
